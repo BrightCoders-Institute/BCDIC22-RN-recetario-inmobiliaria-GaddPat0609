@@ -5,8 +5,8 @@ export default function Content() {
   return (
     <View style={styles.content}>
       <Text>Content1</Text>
-      <Text>Content1</Text>
-      <Text>Content1</Text>
+      <Text>Content2</Text>
+      <Text>Content3</Text>
       <Text>Content4</Text>
     </View>
   )
