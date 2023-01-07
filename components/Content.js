@@ -4,19 +4,23 @@ import React from 'react'
 export default function Content() {
   return (
     <View style={styles.content}>
-      <Text>Content1</Text>
-      <Text>Content2</Text>
-      <Text>Content3</Text>
-      <Text>Content4</Text>
+      { Data.map((item,index)=>(
+        <Text key={index}>{item.nombre}</Text>
+      ))}
+
     </View>
   )
 }
 
 const styles = StyleSheet.create({
+  //contenido de la card
   content: {
     flex: 1,
     backgroundColor: 'red',
     alignItems: 'center',
     justifyContent: 'center',
+    width:100,
+    padding:10,
+    borderRadius:10
   },
 });
