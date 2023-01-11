@@ -46,6 +46,12 @@ npm install
 npx react-native run-android/ios
 ```
 
+#### Expo Go
+
+```
+npx expo start
+```
+
 #### Android
 
 ```
