@@ -11,7 +11,6 @@ import PropTypes from 'prop-types'
 
 export default function Card(props) {
   const [clicked, setClicked] = useState(false)
-  console.log(props)
   return (
     <View style={styles.card}>
       <View
