@@ -1,45 +1,84 @@
-import { Text, View, ScrollView, StyleSheet, Image } from 'react-native'
-import React, { Component } from 'react'
-import Data from '../casasInfo.json'
+import { Text, View, Image, TouchableOpacity } from 'react-native'
+import React, { useState } from 'react'
+import styles from '../styles/styles.js'
+import {
+  Ionicons,
+  EvilIcons,
+  MaterialCommunityIcons,
+  AntDesign,
+} from '@expo/vector-icons'
+import PropTypes from 'prop-types'
 
-export default class Card extends Component {
-  render() {
-    return (
-        <ScrollView style={styles.scroll}>
-        <View>
-            {Data.map((item,index)=>(
-              <View  style={styles.card}>
-                <Text key={index}>{item.nombre}</Text>
-                <Text>{item.ubicacion}</Text>
-                <Text>{item.caracteristicas.habitaciones}</Text>
-                <Text>{item.caracteristicas.baños}</Text>
-                <Text>{item.caracteristicas.ft}</Text>
-                <Text>{item.renta}</Text>
-                <Image style={styles.foto} source={{uri:item.foto}}/>
-              </View>
-            ))}
+export default function Card(props) {
+  const [clicked, setClicked] = useState(false)
+  console.log(props)
+  return (
+    <View style={styles.card}>
+      <View
+        style={{
+          justifyContent: 'center',
+          position: 'relative',
+          alignItems: 'center',
+          width: '28%',
+        }}
+      >
+        <Image style={styles.img} source={{ uri: props.item.foto }} />
+        <View style={styles.starContainer}>
+          <AntDesign name="star" size={12} color="#EEBA00" />
+          <Text
+            style={{
+              color: '#7A6229',
+              marginLeft: 5,
+              fontWeight: '700',
+            }}
+          >
+            4.7
+          </Text>
         </View>
-      </ScrollView>
-    )
-  }
+      </View>
+      <View style={styles.contentCard}>
+        <Text style={[styles.bold, styles.fontxl]}>{props.item.nombre}</Text>
+        <View style={styles.location}>
+          <EvilIcons name="location" size={24} color="black" />
+          <Text style={{ marginLeft: 3, color: 'gray' }}>
+            {props.item.ubicacion}
+          </Text>
+        </View>
+        <View style={styles.info}>
+          <View style={styles.row}>
+            <Ionicons name="bed-outline" size={24} color="gray" />
+            <Text style={styles.iconSpace}>
+              {props.item.caracteristicas.habitaciones}
+            </Text>
+          </View>
+          <View style={styles.row}>
+            <MaterialCommunityIcons name="shower" size={24} color="gray" />
+            <Text style={styles.iconSpace}>
+              {props.item.caracteristicas.baños}
+            </Text>
+          </View>
+          <View style={styles.row}>
+            <MaterialCommunityIcons name="move-resize" size={24} color="gray" />
+            <Text style={styles.iconSpace}>
+              {props.item.caracteristicas.ft} ft²
+            </Text>
+          </View>
+        </View>
+        <Text>{props.item.renta}</Text>
+      </View>
+      <TouchableOpacity
+        style={styles.buttonHeart}
+        onPress={() => setClicked(!clicked)}
+      >
+        {clicked ? (
+          <AntDesign name="heart" size={12} color="white" />
+        ) : (
+          <AntDesign name="hearto" size={12} color="white" />
+        )}
+      </TouchableOpacity>
+    </View>
+  )
 }
-const styles = StyleSheet.create({
-  //contenido de la card
-  scroll: {
-    backgroundColor:'red',
-    width:5
-  },
-  card:{
-    flex:1,
-    flexDirection:'row-reverse',
-    margin:10,
-    backgroundColor:'purple',
-    borderRadius:10,
-    alignContent:'space-between'
-  },
-  foto:{
-  
-    width:100,
-    height:100
-  }
-});
+Card.propTypes = {
+  item: PropTypes.object,
+}
