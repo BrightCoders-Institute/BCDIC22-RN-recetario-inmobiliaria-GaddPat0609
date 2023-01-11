@@ -9,6 +9,7 @@
   - [Instalar dependencias](#Instalar-dependencias)
   - [Ejecutar](#Ejecutar)
     - [Cualquier entorno](#Cualquier-entorno)
+    - [Expo Go](#Expo)
     - [Android](#Android)
     - [iOS](#iOS)
     - [Web](#Web)
